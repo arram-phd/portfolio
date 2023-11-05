@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deciphering the History of ERK Activity from Fixed-Cell Immunofluorescence Measurements &mdash; Abhineet Ram 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Abhineet" href="aboutme.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Abhineet Ram
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About me:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="aboutme.html">Abhineet</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Image and Data Analysis:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deciphering the History of ERK Activity from Fixed-Cell Immunofluorescence Measurements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-dataset-linking-live-cell-erk-activity-to-erk-target-immunofluorescence">A dataset linking live-cell ERK activity to ERK target immunofluorescence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#regression-modeling-of-the-erk-etg-relationship-predicts-features-of-erk-dynamics">Regression modeling of the ERK-ETG relationship predicts features of ERK dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#neural-network-based-models-of-the-erk-etg-relationship-reveals-non-linear-time-dependence-of-erk-dynamics">Neural network-based models of the ERK-ETG relationship reveals non-linear time dependence of ERK dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#classification-models-uncover-prototypical-patterns-of-erk-signaling-with-distinct-gene-expression-profiles">Classification models uncover prototypical patterns of ERK signaling with distinct gene expression profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Abhineet Ram</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Deciphering the History of ERK Activity from Fixed-Cell Immunofluorescence Measurements</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ERKETG.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deciphering-the-history-of-erk-activity-from-fixed-cell-immunofluorescence-measurements">
+<span id="erketg"></span><h1>Deciphering the History of ERK Activity from Fixed-Cell Immunofluorescence Measurements<a class="headerlink" href="#deciphering-the-history-of-erk-activity-from-fixed-cell-immunofluorescence-measurements" title="Permalink to this heading"></a></h1>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this heading"></a></h2>
+<p>The Ras/ERK pathway drives cell proliferation and other oncogenic behaviors, and quantify- ing its activity in situ is of high interest in cancer diagnosis and therapy. Pathway activation is often assayed by measuring phosphorylated ERK. However, this form of measurement overlooks dynamic aspects of signaling that can only be observed over time. In this study, we combine a live, single-cell ERK biosensor approach with multiplexed immunofluores- cence staining of downstream target proteins to ask how well immunostaining captures the dynamic history of ERK activity. Combining linear regression, machine learning, and dif- ferential equation models, we develop an interpretive framework for immunostains, in which Fra-1 and pRb levels imply long term activation of ERK signaling, while Egr-1 and c-Myc indicate recent activation. We show that this framework can distinguish different classes of ERK dynamics within a heterogeneous population, providing a tool for annotating ERK dynamics within fixed tissues.</p>
+</section>
+<section id="a-dataset-linking-live-cell-erk-activity-to-erk-target-immunofluorescence">
+<h2>A dataset linking live-cell ERK activity to ERK target immunofluorescence<a class="headerlink" href="#a-dataset-linking-live-cell-erk-activity-to-erk-target-immunofluorescence" title="Permalink to this heading"></a></h2>
+<p>To create a dataset that enables correlation of ERK activation to downstream target ex- pression and modification, we first collected live ERK activity measurements in response to differential activation of the RAS/MAP Kinase pathway. We used EKAR 3.5, a calibrated, FRET-based biosensor of ERK activity, to measure single-cell activation in MCF10A mammary epithelial cells. With a series of Epidermal Growth Factor (EGF) concentrations, ERK activity was stimulated in a dose-dependent manner</p>
+<figure class="align-default" id="id1">
+<img alt="_images/P1_schema.png" src="_images/P1_schema.png" />
+<figcaption>
+<p><span class="caption-text">Experimental setup</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2">
+<img alt="_images/P2.png" src="_images/P2.png" />
+<figcaption>
+<p><span class="caption-text">Single-cell ERK actvity measurements.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Immediately following live-cell data collection, we fixed the cells, and conducted cyclic immunofluorescence (4i) staining to measure levels of eight targets downstream of ERK.</p>
+<figure class="align-default" id="id3">
+<img alt="_images/P3.png" src="_images/P3.png" />
+<figcaption>
+<p><span class="caption-text">Quantification of ERK Target protein expression via Immunofluorescence.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>We then analyzed the correlation between ERK activity and the expression of each target. To link live-cell ERK activity measurements with the respective 4i data for each cell, we aligned the corresponding image datasets and generated a heatmap arranged by the mean ERK activity measurement in each cell. While both ERK activity and 4i targets were variable across the data set, most of the 4i targets exhibited some discernible correlation with mean ERK activity, which was especially strong for Fra-1 and pRb.</p>
+<figure class="align-default" id="id4">
+<img alt="_images/P4.png" src="_images/P4.png" />
+<figcaption>
+<p><span class="caption-text">Single-cell heatmap of ERK activity coupled with protein expression.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="regression-modeling-of-the-erk-etg-relationship-predicts-features-of-erk-dynamics">
+<h2>Regression modeling of the ERK-ETG relationship predicts features of ERK dynamics<a class="headerlink" href="#regression-modeling-of-the-erk-etg-relationship-predicts-features-of-erk-dynamics" title="Permalink to this heading"></a></h2>
+<p>For a rigorous statistical analysis of the relationship between ERK activity and ETG expression, we performed cross-validated linear regression using the 4i measurements as predictors and ERK pulse features as response variables. We first created single predictor models to assess how well each target individually predicts each ERK feature in an individual cell.
+Analysis of the variance explained (R2) for each model confirms the results from the Pearson correlation analysis. Fra-1 and pRb best predict the sum of duration of ERK pulses (R2 = 0.42, 0.31, respectively), and the average ERK activity in each cell (R2 = 0.28 and 0.23).
+These results suggest the duration of ERK activation seems to have a stronger influence on gene expression than the strength of the activation.</p>
+<p>To assess whether the prediction models can be improved by considering multiple stains simultaneously, we generated several multiple linear regression (MLR) models using all 4i measurements as predictors at once. The ERK parameter with the highest variance explained was the sum of duration (R2 = 0.52).
+The models for derivative benefited the most from the multivariable models, however, they still only explained 33% of the variation in the data. c-Jun again served as a negative control, as those models did not explain any of the variation in ERK activity.
+We then investigated which antibody combinations are most important in the MLR models. For each ERK feature, we created models that successively added predictors, and measured the resulting R2, and test-set error for each new predictor.
+For most ERK features, we found that the maximum R2 values can be achieved with just 2 to 3 predictors, where adding Fra-1 and pRb typically caused the highest improvement in R2 values and decrease in test-set error. The best model for the average derivative of ERK had a similar R2 with the model for the ERK mean (R2 = 0.36, 0.33, respectively). The main distinction for the average derivative model is the strong contribution from Egr-1.</p>
+<figure class="align-default" id="id5">
+<img alt="_images/P5.png" src="_images/P5.png" />
+<figcaption>
+<p><span class="caption-text">Regression analysis of the relationship between ERK and ETGs</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="neural-network-based-models-of-the-erk-etg-relationship-reveals-non-linear-time-dependence-of-erk-dynamics">
+<h2>Neural network-based models of the ERK-ETG relationship reveals non-linear time dependence of ERK dynamics<a class="headerlink" href="#neural-network-based-models-of-the-erk-etg-relationship-reveals-non-linear-time-dependence-of-erk-dynamics" title="Permalink to this heading"></a></h2>
+<p>While the previous models of featurized ERK activity provide interpretable correlations that help to understand the underlying biological process, they assume linearity and may not capture more complex relationships in the data. Additionally, some ERK parameters are correlated with each other, and other features of the time series may be missed.
+To examine the importance of the timing of ERK activation and identify which timepoints have he greatest impact on final expression levels, we trained a convolutional neural network (CNN) to use the ERK activity time series to predict expression levels of each ERK target in individual cells.
+As a comparison to the CNN, we also fit linear regression models (TS linear) using the values at each timepoint of the ERK time series as individual variables to predict final ERK target levels.</p>
+<p>We compared the performance of these time series-based models with that of ERK dynamics feature based models (Featurized linear). These feature-based models used all nine featurized ERK measurements (i.e. mean/duration/frequency) to predict the expression of each ERK target.
+We found that the CNN achieved the highest performance in predicting all ERK targets, except for pERK. To account for overfitting, we calculated the mean squared error (MSE) on unseen data (test set) and the CNN exhibited the least error for all targets, except for pERK. Although the CNN yielded better performance for most targets, a significant amount of variance is still not captured by the model.
+Notably, the CNN models for Egr-1 and pRb explained much more variance than linear regression models of other targets, implying that Egr-1 and pRb likely respond to ERK activation with significant non-linearity.
+Finally, for many 4i targets, the featurized linear models underperformed the other two methods, both in R2 and test set error, indicating that the featurization method often does not capture important aspects of ERK signaling
+that influence gene expression.</p>
+<figure class="align-default" id="id6">
+<img alt="_images/P6.png" src="_images/P6.png" />
+<figcaption>
+<p><span class="caption-text">Comparison of CNN and regression models.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="classification-models-uncover-prototypical-patterns-of-erk-signaling-with-distinct-gene-expression-profiles">
+<h2>Classification models uncover prototypical patterns of ERK signaling with distinct gene expression profiles<a class="headerlink" href="#classification-models-uncover-prototypical-patterns-of-erk-signaling-with-distinct-gene-expression-profiles" title="Permalink to this heading"></a></h2>
+<p>Thus far, we have trained models that predict several continuous variables that represent ERK history; however, the application of these models is limited by the challenge of concur- rently visualizing the predictions.
+Therefore, we demonstrate here how spatiotemporal ERK predictions can be represented in a concise and intuitive manner. To do so, we first used k- means clustering to group cells into similar response classes, or prototypes, of ERK activity. We clustered cells into five classes: low activation (cluster 1), recent deactivation (cluster 2), long term activation (cluster 3), mid-term activation (cluster 4), and recent activation (cluster 5)
+Analysis of the 4i target expression levels in each cluster was consistent with our previous statistical models. Long-term activation led to the highest expression of pERK, Fra-1, and pRb, while low activation displayed the lowest for all targets. Cells with recent activation highly expressed Egr-1 and c-Myc.</p>
+<p>We next trained a decision tree classifier that predicts prototypes of ERK signaling history using ERK target expression levels. The overall prediction accuracy of our model was 51% (compared to 20% for random selection), while individual class predictions varied in accuracy. Long-term activation class predictions were the most accurate (64%), and mid-term activation classifications were the least accurate (36%).
+These findings indicate that long term and recent activation result in distinct patterns of the expressed genes we measured, while mid-term activation produces the highest variability in gene expression.</p>
+<p>Finally, to simulate a potential use case with fixed tissue samples, we then used our classifier to predict ERK activity classes, and therefore histories, in cells from a single well in our dataset. Our analysis effectively quantifies the distinctiveness in gene expression associated with different ERK signaling prototypes and illustrates the utility of ETG stains in predicting the spatiotemporal signaling history of individual cells.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/P7.png"><img alt="_images/P7.png" src="_images/P7.png" style="width: 321.0px; height: 291.0px;" /></a>
+</figure>
+<figure class="align-default" id="id7">
+<img alt="_images/P8.png" src="_images/P8.png" />
+<figcaption>
+<p><span class="caption-text">Inferring ERK signaling histories</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading"></a></h2>
+<p>Here, we provide proof of principle that end-point ETG staining can be used to infer key aspects of long-term ERK activity within fixed cell samples. While differences in ETG activation by ERK were previously known, our analysis formalizes these differences and shows how quantitative models can be used to infer ERK’s activity history with single- cell resolution. The ETG measurements in these experiments provide information about two broad types of ERK behavior, long-term and short-term activation. Additionally, our model analysis of simulated ETGs demonstrates that additional measurements could even more finely resolve signaling patterns, such as intermittent pulses.
+The experimental and biological limits of these predictions remain to be established; however, this model framework can be used to estimate properties of ETGs that would optimally improve the measurement set.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="aboutme.html" class="btn btn-neutral float-left" title="Abhineet" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Abhineet Ram.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
