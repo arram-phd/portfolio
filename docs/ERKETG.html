@@ -51,9 +51,9 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Deciphering the History of ERK Activity from Fixed-Cell Immunofluorescence Measurements</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#abstract">Abstract</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#a-dataset-linking-live-cell-erk-activity-to-erk-target-immunofluorescence">A dataset linking live-cell ERK activity to ERK target immunofluorescence</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#regression-modeling-of-the-erk-etg-relationship-predicts-features-of-erk-dynamics">Regression modeling of the ERK-ETG relationship predicts features of ERK dynamics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#neural-network-based-models-of-the-erk-etg-relationship-reveals-non-linear-time-dependence-of-erk-dynamics">Neural network-based models of the ERK-ETG relationship reveals non-linear time dependence of ERK dynamics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#classification-models-uncover-prototypical-patterns-of-erk-signaling-with-distinct-gene-expression-profiles">Classification models uncover prototypical patterns of ERK signaling with distinct gene expression profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#regression-modeling">Regression modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#neural-network-based-models">Neural network-based models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#classification-models">Classification models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#discussion">Discussion</a></li>
 </ul>
 </li>
@@ -119,8 +119,8 @@
 </figcaption>
 </figure>
 </section>
-<section id="regression-modeling-of-the-erk-etg-relationship-predicts-features-of-erk-dynamics">
-<h2>Regression modeling of the ERK-ETG relationship predicts features of ERK dynamics<a class="headerlink" href="#regression-modeling-of-the-erk-etg-relationship-predicts-features-of-erk-dynamics" title="Permalink to this heading"></a></h2>
+<section id="regression-modeling">
+<h2>Regression modeling<a class="headerlink" href="#regression-modeling" title="Permalink to this heading"></a></h2>
 <p>For a rigorous statistical analysis of the relationship between ERK activity and ETG expression, we performed cross-validated linear regression using the 4i measurements as predictors and ERK pulse features as response variables. We first created single predictor models to assess how well each target individually predicts each ERK feature in an individual cell.
 Analysis of the variance explained (R2) for each model confirms the results from the Pearson correlation analysis. Fra-1 and pRb best predict the sum of duration of ERK pulses (R2 = 0.42, 0.31, respectively), and the average ERK activity in each cell (R2 = 0.28 and 0.23).
 These results suggest the duration of ERK activation seems to have a stronger influence on gene expression than the strength of the activation.</p>
@@ -135,8 +135,8 @@ For most ERK features, we found that the maximum R2 values can be achieved with 
 </figcaption>
 </figure>
 </section>
-<section id="neural-network-based-models-of-the-erk-etg-relationship-reveals-non-linear-time-dependence-of-erk-dynamics">
-<h2>Neural network-based models of the ERK-ETG relationship reveals non-linear time dependence of ERK dynamics<a class="headerlink" href="#neural-network-based-models-of-the-erk-etg-relationship-reveals-non-linear-time-dependence-of-erk-dynamics" title="Permalink to this heading"></a></h2>
+<section id="neural-network-based-models">
+<h2>Neural network-based models<a class="headerlink" href="#neural-network-based-models" title="Permalink to this heading"></a></h2>
 <p>While the previous models of featurized ERK activity provide interpretable correlations that help to understand the underlying biological process, they assume linearity and may not capture more complex relationships in the data. Additionally, some ERK parameters are correlated with each other, and other features of the time series may be missed.
 To examine the importance of the timing of ERK activation and identify which timepoints have he greatest impact on final expression levels, we trained a convolutional neural network (CNN) to use the ERK activity time series to predict expression levels of each ERK target in individual cells.
 As a comparison to the CNN, we also fit linear regression models (TS linear) using the values at each timepoint of the ERK time series as individual variables to predict final ERK target levels.</p>
@@ -152,8 +152,8 @@ that influence gene expression.</p>
 </figcaption>
 </figure>
 </section>
-<section id="classification-models-uncover-prototypical-patterns-of-erk-signaling-with-distinct-gene-expression-profiles">
-<h2>Classification models uncover prototypical patterns of ERK signaling with distinct gene expression profiles<a class="headerlink" href="#classification-models-uncover-prototypical-patterns-of-erk-signaling-with-distinct-gene-expression-profiles" title="Permalink to this heading"></a></h2>
+<section id="classification-models">
+<h2>Classification models<a class="headerlink" href="#classification-models" title="Permalink to this heading"></a></h2>
 <p>Thus far, we have trained models that predict several continuous variables that represent ERK history; however, the application of these models is limited by the challenge of concur- rently visualizing the predictions.
 Therefore, we demonstrate here how spatiotemporal ERK predictions can be represented in a concise and intuitive manner. To do so, we first used k- means clustering to group cells into similar response classes, or prototypes, of ERK activity. We clustered cells into five classes: low activation (cluster 1), recent deactivation (cluster 2), long term activation (cluster 3), mid-term activation (cluster 4), and recent activation (cluster 5)
 Analysis of the 4i target expression levels in each cluster was consistent with our previous statistical models. Long-term activation led to the highest expression of pERK, Fra-1, and pRb, while low activation displayed the lowest for all targets. Cells with recent activation highly expressed Egr-1 and c-Myc.</p>

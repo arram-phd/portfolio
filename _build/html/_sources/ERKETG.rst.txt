@@ -31,7 +31,7 @@ We then analyzed the correlation between ERK activity and the expression of each
 
     Single-cell heatmap of ERK activity coupled with protein expression.
 
-Regression modeling of the ERK-ETG relationship predicts features of ERK dynamics
+Regression modeling
 ----------------------------------------------------------------------------------
 
 For a rigorous statistical analysis of the relationship between ERK activity and ETG expression, we performed cross-validated linear regression using the 4i measurements as predictors and ERK pulse features as response variables. We first created single predictor models to assess how well each target individually predicts each ERK feature in an individual cell. 
@@ -47,7 +47,7 @@ For most ERK features, we found that the maximum R2 values can be achieved with 
 
     Regression analysis of the relationship between ERK and ETGs
 
-Neural network-based models of the ERK-ETG relationship reveals non-linear time dependence of ERK dynamics
+Neural network-based models
 ----------------------------------------------------------------------------------------------------------
 
 While the previous models of featurized ERK activity provide interpretable correlations that help to understand the underlying biological process, they assume linearity and may not capture more complex relationships in the data. Additionally, some ERK parameters are correlated with each other, and other features of the time series may be missed. 
@@ -64,7 +64,7 @@ that influence gene expression.
 
     Comparison of CNN and regression models.
 
-Classification models uncover prototypical patterns of ERK signaling with distinct gene expression profiles
+Classification models
 -------------------------------------------------------------------------------------------------------------
 
 Thus far, we have trained models that predict several continuous variables that represent ERK history; however, the application of these models is limited by the challenge of concur- rently visualizing the predictions. 
