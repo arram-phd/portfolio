@@ -1,7 +1,7 @@
 .. _sphinx_info:
 
-What is sphinx?
-================
+This website is created by Sphinx
+====================================
 
 Sphinx is a popular documentation generation tool for Python and other programming languages. It allows you to create documentation for your software projects, libraries, and packages in a consistent and readable format. Sphinx is widely used in the Python community and is the standard documentation tool for the Python language itself.
 
