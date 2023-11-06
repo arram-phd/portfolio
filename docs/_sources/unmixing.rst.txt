@@ -53,6 +53,11 @@ The script will output these shaded values as a normalized matrix which gives th
 These values can then be used to correct for crosstalk in the images taken on this particular microscope given these specific acquisition settings. 
 
 
+Code Availability
+------------------
+https://github.com/abzzram/specmix
+
+
 
 
 
