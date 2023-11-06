@@ -22,7 +22,9 @@ Welcome to Abhineet Ram's Portfolio!
    ERKETG
    unmixing
 
-   
+.. toctree::
+   :maxdepth: 2
+   :caption: Bioinformatics:  
 
 Indices and tables
 ==================

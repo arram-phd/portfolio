@@ -43,7 +43,9 @@ The shaed region below is the product of all of the listed properties, summed ac
 
     Expected signal calculation for iRFP670
 
-The python code will do this calculate for each input fluorophore in each channel. 
+The python code will do this calculatation for each input fluorophore in each channel. Here's an example input and the plotted spectra:
+
+.. figure:: images/unmixing3.png
 
 .. figure:: images/unmixing7.png
 
