@@ -20,6 +20,7 @@ Welcome to Abhineet Ram's Portfolio!
    :caption: Data and Image Analysis:
 
    ERKETG
+   unmixing
 
    
 
