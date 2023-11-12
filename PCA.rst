@@ -10,7 +10,9 @@ Welcome to a brief tutorial on how to conduct a standard PCA in matlab using fea
 
 This dataset was created by live-cell ERK biosensor imaging of three cell types responding to Epidermal Growth Factor (EGF), Amphiregulin (AREG) or the control (Imaging Media).
 
-PCA is:
+PCA, or Principal Component Analysis, is a dimensionality reduction technique widely used in machine learning and data analysis. 
+The primary goal is to transform high-dimensional data into a new coordinate system (i.e., a new set of variables), called principal components, where the data's variance is maximized along the principal axes. 
+This transformation allows for a more efficient representation of the data while retaining its essential features (dimensionality reduction).
 
 For more details on the math behind PCA, here's a greate video from stat quest: https://www.youtube.com/watch?v=FgakZw6K1QQ
 
