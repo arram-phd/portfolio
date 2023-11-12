@@ -1,10 +1,8 @@
 .. _PCA:
 
-Tutorials 
+Principle Component Analysis
 =============================
 
-PCA 
------
 
 This presentation was made as a brief introduction to PCA to new members of the Albeck Lab.
 
