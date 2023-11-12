@@ -1,0 +1,73 @@
+.. _PCA:
+
+Tutorials 
+=============================
+
+PCA 
+-----
+
+This presentation was made as a brief introduction to PCA to new members of the Albeck Lab.
+
+Welcome to a brief tutorial on how to conduct a standard PCA in matlab using featureized single-cell traces. 
+
+This dataset was created by live-cell ERK biosensor imaging of three cell types responding to Epidermal Growth Factor (EGF) or Epireguulin (EREG).
+
+PCA is:
+
+For more details on the math behind PCA, here's a greate video from stat quest: https://www.youtube.com/watch?v=FgakZw6K1QQ
+
+.. figure:: images/PCA_pics/1.png
+
+Single-cell traces were "featurized" into different characteristics which make up the columns of the data. Each row is a single cell. 
+Featurization can be done using our custom function "ct_pulseanalysis". We also include information about the cell type and ligand. 
+
+
+.. figure:: images/PCA_pics/2.png
+
+    Each column represents a distinct features of the ERK biosensor.
+
+
+Before running the PCA function, we will "standardize" the data to make the columns more comparable. 
+
+.. figure:: images/PCA_pics/3.png
+
+    Notice that standardization does not change the distribution.
+
+Now we are ready to the the princple component analysis using matlabs pca funciton. 
+It has several outputs which we will be looking at.
+
+.. code-block:: python
+
+    pca(data)
+
+.. figure:: images/PCA_pics/4.png
+
+    The scores are particularly important because they will help us visualize the data in reduced dimensions. 
+
+Next, we look at the "pareto" plot, to see how much variance is explained by the principle components. 
+We see that, the first PC explains 50% of the varaince, which is very good for our data!
+This means that about half of the variation in our single-cell ERK data can be explain by a single component.
+
+.. figure:: images/PCA_pics/5.png
+
+We can gain an intuition about how each princple component is made by looking at the loadings output. 
+Here we see that the first principle component as the overall ERK response to stimulation by EGF. 
+
+.. figure:: images/PCA_pics/6.png
+
+    PC1 loadings
+
+We can do the same with PC2 (and so on), seeing that the second principle componenent is the pulsatility of the resopnse to EREG.
+.. figure:: images/PCA_pics/7.png
+
+
+Finally, we can use the scores output to visualize the data in PC space. By coloring each plot by different groupings, we can find patterns in the data. 
+For example, we see that each cell type have unique responses profiles (left), and the ligands themselves also have unique profiles!
+
+.. figure:: images/PCA_pics/9.png
+
+    Our data in reduced dimensions!
+
+
+    
+

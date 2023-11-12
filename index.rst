@@ -8,7 +8,7 @@ Welcome to Abhineet Ram's Portfolio!
 
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: About me:
 
    aboutme
@@ -16,17 +16,25 @@ Welcome to Abhineet Ram's Portfolio!
    
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Data and Image Analysis:
 
    ERKETG
    unmixing
+   
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Bioinformatics:  
 
-   
+   bulkRNAseq
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Tutorials:  
+
+   PCA   
+
 
 Indices and tables
 ==================
