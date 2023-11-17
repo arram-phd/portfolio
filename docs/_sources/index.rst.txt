@@ -21,10 +21,20 @@ Welcome to Abhineet Ram's Portfolio!
 
    ERKETG
    unmixing
+   
 
 .. toctree::
    :maxdepth: 2
    :caption: Bioinformatics:  
+
+   bulkRNAseq
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Tutorials:  
+
+   PCA   
+
 
 Indices and tables
 ==================

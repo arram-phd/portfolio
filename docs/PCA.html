@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Principle Component Analysis &mdash; Abhineet Ram 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Bulk RNA sequencing analysis" href="bulkRNAseq.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Abhineet Ram
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About me:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="aboutme.html">Abhineet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beforeyoubegin.html">Resume</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Image Analysis:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ERKETG.html">Deciphering the History of ERK Activity from Fixed-Cell Immunofluorescence Measurements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unmixing.html">Spectral Unmixing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Bioinformatics:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bulkRNAseq.html">Bulk RNA sequencing analysis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Principle Component Analysis</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Abhineet Ram</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Principle Component Analysis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/PCA.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="principle-component-analysis">
+<span id="pca"></span><h1>Principle Component Analysis<a class="headerlink" href="#principle-component-analysis" title="Permalink to this heading"></a></h1>
+<p>This presentation was made as a brief introduction to PCA to new members of the Albeck Lab.</p>
+<p>Welcome to a brief tutorial on how to conduct a standard PCA in matlab using featureized single-cell traces.</p>
+<p>This dataset was created by live-cell ERK biosensor imaging of three cell types responding to Epidermal Growth Factor (EGF), Amphiregulin (AREG) or the control (Imaging Media).</p>
+<p>PCA, or Principal Component Analysis, is a dimensionality reduction technique widely used in machine learning and data analysis.
+The primary goal is to transform high-dimensional data into a new coordinate system (i.e., a new set of variables), called principal components, where the data’s variance is maximized along the principal axes.
+This transformation allows for a more efficient representation of the data while retaining its essential features (dimensionality reduction).</p>
+<p>For more details on the math behind PCA, here’s a greate video from stat quest: <a class="reference external" href="https://www.youtube.com/watch?v=FgakZw6K1QQ">https://www.youtube.com/watch?v=FgakZw6K1QQ</a></p>
+<p>The main function used in this tutorial is called PCApl (Princple Component Analysis Pipeline). It will conduct all the necessary steps for us and output three graphs for us to analysize.</p>
+<p>Single-cell traces will be “featurized” into different characteristics which make up the columns of the data. Each row is a single cell.</p>
+<figure class="align-default" id="id1">
+<img alt="_images/Slide12.png" src="_images/Slide12.png" />
+<figcaption>
+<p><span class="caption-text">Each column represents a distinct features of the ERK biosensor.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>One thing to remember is the function will standardize the data. It allows for comparison of the parameters.</p>
+<figure class="align-default" id="id2">
+<img alt="_images/Slide13.png" src="_images/Slide13.png" />
+<figcaption>
+<p><span class="caption-text">Notice that standardization does not change the distribution.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Now we are ready to the the princple component analysis using PCApl
+It has several figure outputs which we will be looking at.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PCApl</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id3">
+<img alt="_images/Slide14.png" src="_images/Slide14.png" />
+<figcaption>
+<p><span class="caption-text">example usage with basic input parameters</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Next, we look at the “pareto” plot, to see how much variance is explained by the principle components.
+We see that, the first PC explains ~50% of the varaince, which is very good for our data!
+This means that about half of the variation in our single-cell ERK data can be explain by a single component.</p>
+<figure class="align-default">
+<img alt="_images/Slide15.png" src="_images/Slide15.png" />
+</figure>
+<p>We can gain an intuition about how each princple component is made by looking at the loadings output.
+Here we see that the first principle component as the overall ERK response to stimulation by EGF.</p>
+<figure class="align-default" id="id4">
+<img alt="_images/Slide16.png" src="_images/Slide16.png" />
+<figcaption>
+<p><span class="caption-text">PC1 loadings</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>We can do the same with PC2 (and so on), seeing that the second principle componenent is the pulsatility of the resopnse to the ligand.</p>
+<figure class="align-default" id="id5">
+<img alt="_images/Slide17.png" src="_images/Slide17.png" />
+<figcaption>
+<p><span class="caption-text">PC2 loadings</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Finally, we can use the scores output to visualize the data in PC space. By coloring each plot by different groupings, we can find patterns in the data.
+For example, we see that each cell type have somewhat unique responses profiles (left), and the ligands themselves also have unique profiles!</p>
+<figure class="align-default" id="id6">
+<img alt="_images/Slide18.png" src="_images/Slide18.png" />
+<figcaption>
+<p><span class="caption-text">Our data in reduced dimensions!</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Code Availability</p>
+<p><a class="reference external" href="https://github.com/abzzram/Principle-Component-Analysis">https://github.com/abzzram/Principle-Component-Analysis</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bulkRNAseq.html" class="btn btn-neutral float-left" title="Bulk RNA sequencing analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Abhineet Ram.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
