@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCF10A RNA sequencing &mdash; Abhineet Ram 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Principle Component Analysis" href="PCA.html" />
+    <link rel="prev" title="Spectral Unmixing" href="unmixing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Abhineet Ram
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About me:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="aboutme.html">Abhineet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beforeyoubegin.html">Resume</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data and Image Analysis:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ERKETG.html">Deciphering the History of ERK Activity from Fixed-Cell Immunofluorescence Measurements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unmixing.html">Spectral Unmixing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Bioinformatics:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MCF10A RNA sequencing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#deseq2">DESeq2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pca-and-batch-correction">PCA and batch correction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#distance-matrix">Distance matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#differential-expression-analysis">Differential expression analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gsea">GSEA</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">Principle Component Analysis</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Abhineet Ram</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">MCF10A RNA sequencing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/RNAseq.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mcf10a-rna-sequencing">
+<span id="rnaseq"></span><h1>MCF10A RNA sequencing<a class="headerlink" href="#mcf10a-rna-sequencing" title="Permalink to this heading"></a></h1>
+<p>Analysis of MCF10A in 16 different conditions 2 biological replicates
+per sample. Note that we would ideally need at least three replicates for a standard analysis.</p>
+<p>After running STAR alignment, one of the outputs will be the raw counts per gene in each sample.
+We will use DESeq2 to detect differentially expressed genes.</p>
+<p>A key aspect of analysis involves quantifying and statistically inferring systematic changes between conditions, contrasting them with within-condition variability. DESeq2, a software package, employs negative binomial generalized linear models to assess differential expression. The estimates of dispersion and logarithmic fold changes integrate data-driven prior distributions.</p>
+<p>More information about the DESeq workflow can be found at: <a class="reference external" href="https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html">https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html</a>
+Love, M.I., Huber, W., Anders, S. (2014) Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. Genome Biology, 15:550. 10.1186/s13059-014-0550-8</p>
+<section id="deseq2">
+<h2>DESeq2<a class="headerlink" href="#deseq2" title="Permalink to this heading"></a></h2>
+<p>First, we create a DESEQDataSet Object.
+You must have a count matrix called counts, and table of sample information called coldata.
+The design indicates how to model the samples, here, that we want to measure the effect of the condition, controlling for replicate differences.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># Create a DESeq object
+dds &lt;- DESeqDataSetFromMatrix(countData = counts, colData = coldata, design = ~condition)
+# Specify reference level to imaging media
+dds$condition &lt;- relevel(dds$condition, &quot;IM&quot;)
+</pre></div>
+</div>
+<p>Now we are ready to run the main DESeq funciion which will perform differential expression analysis.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definitions;</span>
+<span class="c1">#estimateSizeFactors</span>
+<span class="c1">#This calculates the relative library depth of each sample</span>
+<span class="c1">#estimateDispersions</span>
+<span class="c1">#estimates the dispersion of counts for each gene</span>
+<span class="c1">#nbinomWaldTest</span>
+<span class="c1">#calculates the significance of coefficients in a Negative Binomial GLM using the size and dispersion outputs</span>
+<span class="n">dds</span> <span class="o">&lt;-</span> <span class="n">DESeq</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+<span class="c1">#save the output</span>
+<span class="n">saveRDS</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;./data_output/All_vs_IM_dds.rds&quot;</span><span class="p">)</span>
+<span class="c1"># Display size factors for normalization</span>
+<span class="n">sizeFactors</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<span class="n">knitr</span><span class="p">::</span><span class="n">kable</span><span class="p">()</span>
+<span class="c1"># Plotting dispersion estimates is crucial in genomics to assess data variability and serve as a good quality control step.</span>
+<span class="n">plotDispEsts</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span> <span class="c1"># verifies normalization,</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id1">
+<img alt="_images/dispersion.png" src="_images/dispersion.png" />
+<figcaption>
+<p><span class="caption-text">Here we see a good looking dispersion plot. It shows consistent dispersion across a range of expression levels, without pronounced patterns or trends. It suggests that the assumed model for variability appropriately captures the inherent variation in gene expression, ensuring reliable statistical tests for differential expression. Consistency in dispersion is essential for accurate identification of differentially expressed genes and indicates a well-controlled experimental design!</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="pca-and-batch-correction">
+<h2>PCA and batch correction<a class="headerlink" href="#pca-and-batch-correction" title="Permalink to this heading"></a></h2>
+<p>Next, we get an intuition about our experiment by reducing the dimensions of our data using princple component analysis.
+This will help visualize treatments which have similar expression patterns. We can color the plot by the treatmnets or replicate groups.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># Use variance stabilizing transformations (VST) to produce transformed data on the log2 scale which has been normalized with respect to library size or other normalization factors.
+rld &lt;- vst(dds)
+p1 &lt;- plotPCA(rld,intgroup=&quot;condition&quot;) +
+geom_text_repel(max.overlaps = 15,
+                box.padding = 0.25,
+                segment.color = &#39;grey50&#39;,
+                fontface = &quot;italic&quot;,
+                label = rld$condition)+
+labs(title = &#39;PCA per condition&#39;)
+
+p2 &lt;- plotPCA(rld,intgroup=&quot;replicate&quot;) +
+geom_text_repel(max.overlaps = 15,
+                box.padding = 0.25,
+                segment.color = &#39;grey50&#39;,
+                fontface = &quot;italic&quot;,
+                label = rld$replicate)+
+labs(title = &#39;PCA per condition&#39;)
+
+plot_grid(p1, p2, ncol = 2, align = &quot;hv&quot;)
+</pre></div>
+</div>
+<figure class="align-default" id="id2">
+<img alt="_images/PCA1.png" src="_images/PCA1.png" />
+<figcaption>
+<p><span class="caption-text">PCA plot</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>On the left plot, we see that oligomycin, Imaging media without Insulin, Imaging media without Hydrocortisone, Imaging media with EGF, and IL6 treatments are well separated from the larger cluster of treatments. This suggests that the aforementions treatments have unqiue expression patterns.
+On the right plot, we colored by replicate and it suggests that we may have a batch effect.
+To correct for this batch effect, we can use the removeBatchEffect function from the limma package</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># Removing batch effect
+# Perform variance stabilizing transformation
+vsd = vst(dds)
+# Create a copy of the VSD for later use or reference
+vsd1 = vsd
+# Use the limma package&#39;s removeBatchEffect function to remove batch effects
+# The batch information is assumed to be stored in vsd$replicate
+# This function will adjust for batch effects in the expression data
+assay(vsd1) &lt;- limma::removeBatchEffect(assay(vsd), vsd$replicate)
+
+# Create a PCA plot for non-batch corrected data, colored by replicate
+p5 &lt;- plotPCA(vsd,intgroup=&quot;replicate&quot;) +
+geom_text_repel(max.overlaps = 15,
+                box.padding = 0.25,
+                segment.color = &#39;grey50&#39;,
+                fontface = &quot;italic&quot;,
+                label = vsd$replicate)+
+labs(title = &#39;Completed data: PCA not corrected&#39;)
+
+# Create a PCA plot for batch corrected data, colored by replicate
+p6 &lt;- plotPCA(vsd1,intgroup=&quot;replicate&quot;) +
+geom_text_repel(max.overlaps = 15,
+                box.padding = 0.25,
+                segment.color = &#39;grey50&#39;,
+                fontface = &quot;italic&quot;,
+                label = vsd1$replicate)+
+labs(title = &#39;Completed data: PCA corrected&#39;)
+
+plot_grid(p5, p6,ncol = 2, align = &quot;hv&quot;)
+</pre></div>
+</div>
+<figure class="align-default" id="id3">
+<img alt="_images/PCA2.png" src="_images/PCA2.png" />
+<figcaption>
+<p><span class="caption-text">After correcting for the batch effect, we see that the replicate treatments are slightly closer to each other. Note that some are still far apart which suggests those two similar treatments were indeed have dis-similar gene expression.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="distance-matrix">
+<h2>Distance matrix<a class="headerlink" href="#distance-matrix" title="Permalink to this heading"></a></h2>
+<p>To further visualize the similarities and differences between treatments, we compute a distance matrix based on the euclidian distance between each sample with another. This provides a visual representation of sample relationships in the gene expression data. The heatmap allows us to quickly assess the overall structure of the data..</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># Crease a new vsd variable and perform variance stabilizing transformation
+vsd = vst(dds)
+# Checking sample similarity
+# Calculate pairwise distances between samples based on the transformed expression data
+sampleDists &lt;- dist(t(assay(vsd)))
+# Convert the distance matrix to a symmetric matrix
+sampleDistMatrix &lt;- as.matrix(sampleDists)
+# Assign condition labels to rows and columns based on the &#39;condition&#39; column in &#39;vsd&#39;
+rownames(sampleDistMatrix) &lt;- paste(vsd$condition, sep=&quot;-&quot;)
+colnames(sampleDistMatrix) &lt;- paste(vsd$condition, sep=&quot;-&quot;)
+# Define a color palette for the heatmap using the &#39;Blues&#39; color scheme
+colors &lt;- colorRampPalette(rev(brewer.pal(9, &quot;Blues&quot;)) )(255)
+# Create a heatmap of the sample distances with hierarchical clustering
+pheatmap(sampleDistMatrix,
+     clustering_distance_rows=sampleDists,
+     clustering_distance_cols=sampleDists,
+     col=colors)
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="_images/Heatmap1_corrected.png" src="_images/Heatmap1_corrected.png" />
+</figure>
+</section>
+<section id="differential-expression-analysis">
+<h2>Differential expression analysis<a class="headerlink" href="#differential-expression-analysis" title="Permalink to this heading"></a></h2>
+<p>Next, we can compare how specific genes are differentially expressed between to treatments. To do this, we use volcano plots.</p>
+<p>A volcano plot is a graphical representation commonly used to visualize the results of statistical tests for differential gene expression. In a volcano plot, each point represents a gene, and the x-axis typically shows the fold change in gene expression between experimental conditions, while the y-axis shows the statistical significance (e.g., p-value) of the change. Genes with high fold changes and high significance are often found in the “tail” of the volcano, resembling a volcano’s eruption. We will look for points that are significantly up- or downregulated (located far from the center along the x-axis) and considering their statistical significance (distance along the y-axis).</p>
+<p>Firstly, we are interested to find which genes are differntially regulated with Oligomycin treatment. Oligomycin is an inhibitor of ATP synthase, which will inhibit oxidative phosphorylation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># Obtain differential expression results from DESeqDataSet &#39;dds&#39; for the comparison &quot;Oligomycin vs IM&quot;
+res &lt;- results(dds, name = &quot;condition_Oligomycin_vs_IM&quot;)
+# Convert the results to a tibble (data frame) with row names specified as &#39;ensembl&#39;
+res_tbl &lt;- as_tibble(res, rownames=&quot;ensembl&quot;)
+
+# Import annotation file
+ensembl_to_geneName &lt;- readRDS(&quot;./data/hsapiens_annotations_230510.rds&quot;) %&gt;%
+filter(!duplicated(gene, drop = F))
+
+# Add gene names and entrez id to your results. Use left_join to merge gene names and entrez id from ensembl_to_geneName to the result table
+res_tbl &lt;- res_tbl %&gt;%
+left_join(ensembl_to_geneName) %&gt;%
+arrange(padj)
+
+# Create two data frames: one for genes overexpressed and one for genes underexpressed. We set a significance threshold of 0.5 and a log2 fold change of +- 1.
+overexpr &lt;- res_tbl %&gt;% filter(padj&lt;=0.05 &amp; log2FoldChange&gt;=1)
+underexpr &lt;- res_tbl %&gt;% filter(padj&lt;=0.05 &amp; log2FoldChange&lt;=-1)
+signif &lt;- full_join(overexpr, underexpr)
+
+# Volcano plot
+# Filter out rows with NA values in the &#39;padj&#39; column
+p1 = res_tbl %&gt;%
+filter(!is.na(padj)) %&gt;%
+
+# Create a ggplot object with specified aesthetics
+ggplot(aes(x = log2FoldChange, y = -log10(padj),
+            color = padj &lt; 0.05 &amp; abs(log2FoldChange) &gt; 1,
+            label = ifelse(padj&lt;0.05&amp;log2FoldChange&gt;=1|
+                            padj&lt;0.05&amp;log2FoldChange&lt;=-1,as.character(gene),&#39;&#39;))) +
+
+# Manually set color values for significantly expressed genes
+scale_colour_manual(values = c(&quot;gray&quot;, &quot;firebrick3&quot;)) +
+
+# Set labels for the color legend
+labs(col=&quot;Significantly expressed&quot;) +
+
+# Add points to the plot
+geom_point(size = 0.5) +
+
+# Add a horizontal line at -log10(0.05) for visual reference of significance threshold
+geom_hline(yintercept = -log10(0.05)) +
+
+# Add vertical lines at log2FoldChange = 1 and log2FoldChange = -1
+geom_vline(xintercept = 1) +
+geom_vline(xintercept = -1) +
+
+# Add labels to the points using &#39;geom_text_repel&#39; from the &#39;ggrepel&#39; package
+geom_text_repel(max.overlaps = 20,
+                box.padding = 0.25,
+                segment.color = &#39;grey50&#39;,
+                fontface = &quot;italic&quot;) +
+
+# Set the title of the plot
+labs(title = &quot;Oligomycin_vs_IM&quot;) +
+# Set the theme to a simple black and white theme
+theme_bw()
+# Print the plot
+print(p1)
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="_images/condition_Oligomycin_vs_IM.png" src="_images/condition_Oligomycin_vs_IM.png" />
+</figure>
+<p>Here we see many genes that are downregulated: RIN2, SEMA3C, CDC42Ep4, IQGAP2 etc.
+We also see many genes that are upregulated: CDC6, ETV5. DMBT1. E2F7 etc.</p>
+<p>Another condition of interest is the IL6 treatment, which is a pro-inflammatory cytokine, lets look at the volcano plot for that treatment.</p>
+<figure class="align-default" id="id4">
+<img alt="_images/condition_IL6_vs_IM.png" src="_images/condition_IL6_vs_IM.png" />
+<figcaption>
+<p><span class="caption-text">code not shown</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>These results are very interesting! We see that stat3 is upreulated which is a good positive control, Interestingly CXCR1 is upregulated, which is a receptor for IL8.</p>
+</section>
+<section id="gsea">
+<h2>GSEA<a class="headerlink" href="#gsea" title="Permalink to this heading"></a></h2>
+<p>Gene Set Enrichment Analysis (GSEA) is a computational method in bioinformatics that assesses whether a predefined set of genes, representing specific biological functions or pathways, is statistically overrepresented in a ranked list of genes derived from experimental data, such as gene expression profiles.
+By examining the distribution of these gene sets in relation to their expected random distribution, GSEA helps identify biologically relevant patterns and provides insights into the functional significance of gene expression changes in different biological conditions.</p>
+<figure class="align-default">
+<img alt="_images/GSEA_IL6.png" src="_images/GSEA_IL6.png" />
+</figure>
+<p>Code Availability
+<a class="reference external" href="https://github.com/abzzram/MCF10A-Bulk-RNA-Sequencing">https://github.com/abzzram/MCF10A-Bulk-RNA-Sequencing</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="unmixing.html" class="btn btn-neutral float-left" title="Spectral Unmixing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="PCA.html" class="btn btn-neutral float-right" title="Principle Component Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Abhineet Ram.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

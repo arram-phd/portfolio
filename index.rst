@@ -27,7 +27,7 @@ Welcome to Abhineet Ram's Portfolio!
    :maxdepth: 2
    :caption: Bioinformatics:  
 
-   bulkRNAseq
+   RNAseq
 
 .. toctree::
    :maxdepth: 2
