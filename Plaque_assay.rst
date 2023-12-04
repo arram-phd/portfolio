@@ -5,7 +5,7 @@ Automated Cell Cluster Detection
 
 .. figure:: images/Plaque_assay/well5_merge.PNG
 
-    Mammary epithelial cells (blue) stained with an antibody recognizing HMGB1 (green). 9 x 9 stiched image of 20X images captured on a Nikon Ti-2 eclipse fluorescence microscope.
+    Mammary epithelial cells (blue) stained with an antibody recognizing HMGB1 (green). 9 x 9 stiched image of 20X images captured on a Nikon Ti-2 eclipse fluorescence microscope by Illechukwu Agu
 
 
 During paracine signaling, cells send receive ligands that trigger gene expression responses. 
