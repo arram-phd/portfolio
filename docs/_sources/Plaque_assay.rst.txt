@@ -5,11 +5,11 @@ Automated Cell Cluster Detection
 
 .. figure:: images/Plaque_assay/well5_merge.PNG
 
-    Mammary epithelial cells (blue) stained with an antibody recognizing HMGB1 (green). 9 x 9 stiched image of 20X images captured on a Nikon Ti-2 eclipse fluorescence microscope by Illechukwu Agu
+    Mammary epithelial cells (blue) stained with an antibody recognizing HMGB1 (green). 9 x 9 stiched image of 20X images captured on a Nikon Ti-2 eclipse fluorescence microscope by Ilechukwu Agu
 
 
 During paracine signaling, cells send receive ligands that trigger gene expression responses. 
-As a result, express proteins in groups or "clusters" where nearby cells express a certain protein, while others do not. 
+As a result, cells express proteins in groups or "clusters" where nearby cells express a certain protein, while others do not. 
 
 Quantification of these clusters tranditionally require manual identification and drawing of the outlines for each cluster. This is a time intensitve method and requires painstaking effort by the researhcer.
 
@@ -91,7 +91,7 @@ Then the cluster masks are overlayed onto the segmented nuclear masks, and the n
 
 
 This script allows us to count and properly quantify the clusters in each image! 
-It will output the number of clusters, location area and intensity of each cluster, and the number of cells in each cluster in a table format. 
+It will output the number of clusters, location, area and intensity of each cluster, and the number of cells in each cluster in a table format. 
 
 
 .. Acknowledgements
