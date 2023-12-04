@@ -21,6 +21,7 @@ Welcome to Abhineet Ram's Portfolio!
 
    ERKETG
    unmixing
+   Plaque_assay
    
 
 .. toctree::

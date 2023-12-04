@@ -45,7 +45,16 @@ The shaed region below is the product of all of the listed properties, summed ac
 
 The python code will do this calculatation for each input fluorophore in each channel. Here's an example input and the plotted spectra:
 
-.. figure:: images/unmixing3.png
+.. code-block:: python
+    
+    # Define fluorescent proteins
+    FPs = [['mTagBFP2','mScarlet'],['mNeonGreen','iRFP670']] 
+    # Define miscroscope laser settings
+    exc_lines = [['405','561'],['488','637']]
+    laser_powers = [1,1,1,1] 
+    exposure_times = [100, 200]
+    #calculate unmixing matrix
+    c_2d = util.specmix_matrix(datafolder,FPs, exc_lines, laser_powers, exposure_times)
 
 .. figure:: images/unmixing7.png
 

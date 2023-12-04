@@ -59,6 +59,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="unmixing.html">Spectral Unmixing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Plaque_assay.html">Automated Viral Plaque Assay</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Bioinformatics:</span></p>
 <ul>
@@ -66,7 +67,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="PCA.html">Principle Component Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">Principal Component Analysis</a></li>
 </ul>
 
         </div>
@@ -97,11 +98,11 @@
 <span id="erketg"></span><h1>Deciphering the History of ERK Activity from Fixed-Cell Immunofluorescence Measurements<a class="headerlink" href="#deciphering-the-history-of-erk-activity-from-fixed-cell-immunofluorescence-measurements" title="Permalink to this heading"></a></h1>
 <section id="abstract">
 <h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this heading"></a></h2>
-<p>The Ras/ERK pathway drives cell proliferation and other oncogenic behaviors, and quantify- ing its activity in situ is of high interest in cancer diagnosis and therapy. Pathway activation is often assayed by measuring phosphorylated ERK. However, this form of measurement overlooks dynamic aspects of signaling that can only be observed over time. In this study, we combine a live, single-cell ERK biosensor approach with multiplexed immunofluores- cence staining of downstream target proteins to ask how well immunostaining captures the dynamic history of ERK activity. Combining linear regression, machine learning, and dif- ferential equation models, we develop an interpretive framework for immunostains, in which Fra-1 and pRb levels imply long term activation of ERK signaling, while Egr-1 and c-Myc indicate recent activation. We show that this framework can distinguish different classes of ERK dynamics within a heterogeneous population, providing a tool for annotating ERK dynamics within fixed tissues.</p>
+<p>The Ras/ERK pathway drives cell proliferation and other oncogenic behaviors, and quantifying its activity in situ is of high interest in cancer diagnosis and therapy. Pathway activation is often assayed by measuring phosphorylated ERK. However, this form of measurement overlooks dynamic aspects of signaling that can only be observed over time. In this study, we combine a live, single-cell ERK biosensor approach with multiplexed immunofluorescence staining of downstream target proteins to ask how well immunostaining captures the dynamic history of ERK activity. Combining linear regression, machine learning, and differential equation models, we develop an interpretive framework for immunostains, in which Fra-1 and pRb levels imply long term activation of ERK signaling, while Egr-1 and c-Myc indicate recent activation. We show that this framework can distinguish different classes of ERK dynamics within a heterogeneous population, providing a tool for annotating ERK dynamics within fixed tissues.</p>
 </section>
 <section id="a-dataset-linking-live-cell-erk-activity-to-erk-target-immunofluorescence">
 <h2>A dataset linking live-cell ERK activity to ERK target immunofluorescence<a class="headerlink" href="#a-dataset-linking-live-cell-erk-activity-to-erk-target-immunofluorescence" title="Permalink to this heading"></a></h2>
-<p>To create a dataset that enables correlation of ERK activation to downstream target ex- pression and modification, we first collected live ERK activity measurements in response to differential activation of the RAS/MAP Kinase pathway. We used EKAR 3.5, a calibrated, FRET-based biosensor of ERK activity, to measure single-cell activation in MCF10A mammary epithelial cells. With a series of Epidermal Growth Factor (EGF) concentrations, ERK activity was stimulated in a dose-dependent manner</p>
+<p>To create a dataset that enables correlation of ERK activation to downstream target expression and modification, we first collected live ERK activity measurements in response to differential activation of the RAS/MAP Kinase pathway. We used EKAR 3.5, a calibrated, FRET-based biosensor of ERK activity, to measure single-cell activation in MCF10A mammary epithelial cells. With a series of Epidermal Growth Factor (EGF) concentrations, ERK activity was stimulated in a dose-dependent manner</p>
 <figure class="align-default" id="id1">
 <img alt="_images/P1_schema.png" src="_images/P1_schema.png" />
 <figcaption>
@@ -164,8 +165,8 @@ that influence gene expression.</p>
 </section>
 <section id="classification-models">
 <h2>Classification models<a class="headerlink" href="#classification-models" title="Permalink to this heading"></a></h2>
-<p>Thus far, we have trained models that predict several continuous variables that represent ERK history; however, the application of these models is limited by the challenge of concur- rently visualizing the predictions.
-Therefore, we demonstrate here how spatiotemporal ERK predictions can be represented in a concise and intuitive manner. To do so, we first used k- means clustering to group cells into similar response classes, or prototypes, of ERK activity. We clustered cells into five classes: low activation (cluster 1), recent deactivation (cluster 2), long term activation (cluster 3), mid-term activation (cluster 4), and recent activation (cluster 5)
+<p>Thus far, we have trained models that predict several continuous variables that represent ERK history; however, the application of these models is limited by the challenge of concurrently visualizing the predictions.
+Therefore, we demonstrate here how spatiotemporal ERK predictions can be represented in a concise and intuitive manner. To do so, we first used k-means clustering to group cells into similar response classes, or prototypes, of ERK activity. We clustered cells into five classes: low activation (cluster 1), recent deactivation (cluster 2), long term activation (cluster 3), mid-term activation (cluster 4), and recent activation (cluster 5)
 Analysis of the 4i target expression levels in each cluster was consistent with our previous statistical models. Long-term activation led to the highest expression of pERK, Fra-1, and pRb, while low activation displayed the lowest for all targets. Cells with recent activation highly expressed Egr-1 and c-Myc.</p>
 <p>We next trained a decision tree classifier that predicts prototypes of ERK signaling history using ERK target expression levels. The overall prediction accuracy of our model was 51% (compared to 20% for random selection), while individual class predictions varied in accuracy. Long-term activation class predictions were the most accurate (64%), and mid-term activation classifications were the least accurate (36%).
 These findings indicate that long term and recent activation result in distinct patterns of the expressed genes we measured, while mid-term activation produces the highest variability in gene expression.</p>
@@ -182,7 +183,7 @@ These findings indicate that long term and recent activation result in distinct 
 </section>
 <section id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading"></a></h2>
-<p>Here, we provide proof of principle that end-point ETG staining can be used to infer key aspects of long-term ERK activity within fixed cell samples. While differences in ETG activation by ERK were previously known, our analysis formalizes these differences and shows how quantitative models can be used to infer ERK’s activity history with single- cell resolution. The ETG measurements in these experiments provide information about two broad types of ERK behavior, long-term and short-term activation. Additionally, our model analysis of simulated ETGs demonstrates that additional measurements could even more finely resolve signaling patterns, such as intermittent pulses.
+<p>Here, we provide proof of principle that end-point ETG staining can be used to infer key aspects of long-term ERK activity within fixed cell samples. While differences in ETG activation by ERK were previously known, our analysis formalizes these differences and shows how quantitative models can be used to infer ERK’s activity history with single-cell resolution. The ETG measurements in these experiments provide information about two broad types of ERK behavior, long-term and short-term activation. Additionally, our model analysis of simulated ETGs demonstrates that additional measurements could even more finely resolve signaling patterns, such as intermittent pulses.
 The experimental and biological limits of these predictions remain to be established; however, this model framework can be used to estimate properties of ETGs that would optimally improve the measurement set.</p>
 </section>
 </section>

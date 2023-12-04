@@ -250,9 +250,12 @@ By examining the distribution of these gene sets in relation to their expected r
 
     
 
-
+Acknowledgements
+-----------------
+Thank you to Marion Hardy, a talented bioninformatician, for teaching me these techniques! (https://github.com/marionhardy)
     
 
 Code Availability
+------------------
 https://github.com/abzzram/MCF10A-Bulk-RNA-Sequencing
 
