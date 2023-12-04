@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Automated Viral Plaque Assay &mdash; Abhineet Ram 0.0.1 documentation</title>
+  <title>Automated Cell Cluster Detection &mdash; Abhineet Ram 0.0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -51,10 +51,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ERKETG.html">Deciphering the History of ERK Activity from Fixed-Cell Immunofluorescence Measurements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unmixing.html">Spectral Unmixing</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Automated Viral Plaque Assay</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Automated Cell Cluster Detection</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#workflow">Workflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nuclear-segmentation">Nuclear segmentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
 </ul>
 </li>
 </ul>
@@ -81,7 +80,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Automated Viral Plaque Assay</li>
+      <li class="breadcrumb-item active">Automated Cell Cluster Detection</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/Plaque_assay.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -91,22 +90,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="automated-viral-plaque-assay">
-<span id="plaqueassay"></span><h1>Automated Viral Plaque Assay<a class="headerlink" href="#automated-viral-plaque-assay" title="Permalink to this heading"></a></h1>
+  <section id="automated-cell-cluster-detection">
+<span id="plaqueassay"></span><h1>Automated Cell Cluster Detection<a class="headerlink" href="#automated-cell-cluster-detection" title="Permalink to this heading"></a></h1>
 <figure class="align-default" id="id1">
 <img alt="_images/well5_merge.PNG" src="_images/well5_merge.PNG" />
 <figcaption>
-<p><span class="caption-text">Kidney cells (blue) infected with influenza, resulting in viral plaques (green). 9 x 9 stiched image of 20X images captured on a Nikon Ti-2 eclipse fluorescence microscope.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Mammary epithelial cells (blue) stained with an antibody recognizing HMGB1 (green). 9 x 9 stiched image of 20X images captured on a Nikon Ti-2 eclipse fluorescence microscope.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<p>Flu researchers in the Diaz-Munoz Lab at UC Davis often conduct “Plaque Assays,” where cells in culture are exposed to various Flu viruses.
-The virus infects cells and then spreads to nearby cells and this results in “plaques” being formed.</p>
-<p>Traditionally, the quantification of these plaques relied on manual counting, a labor-intensive process susceptible to human error.
-To address this limitation, I developed a MATLAB pipeline that revolutionizes the plaque assay methodology.</p>
-<p>This script not only automates plaque counting but also goes beyond, extracting comprehensive properties for each plaque.
-It analyzes crucial aspects such as area, the number of infected cells, and the intensity of viral protein expression.
-This MATLAB pipeline significantly enhances the precision and efficiency of the assay, bringing it into the 21st century.
-This method not only simplifies the research process but also allows for a better understanding of viral infection dynamics.</p>
+<p>During paracine signaling, cells send receive ligands that trigger gene expression responses.
+As a result, express proteins in groups or “clusters” where nearby cells express a certain protein, while others do not.</p>
+<p>Quantification of these clusters tranditionally require manual identification and drawing of the outlines for each cluster. This is a time intensitve method and requires painstaking effort by the researhcer.</p>
+<p>This script automatically counts the number of clusters in an image and quantifies characteriss of each cluster using image processing techqniques described below.
+This includes the number of cells in each cluster, area and location of each cluster.
+Furthermore, it quantifies the intensity of protein expression in each cluster.</p>
+<p>This method drastically speeds up the analysis time and standardizes the workflow. This leads to less human error and more consistency acroess researchers and datasets.</p>
+<p>This script can be used on any immunofluorescence of any protein!</p>
 <section id="workflow">
 <h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this heading"></a></h2>
 <figure class="align-default" id="id2">
@@ -115,32 +114,30 @@ This method not only simplifies the research process but also allows for a bette
 <p><span class="caption-text">We will be looking at the whole image and a zoomed in region of the image.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<p>Immunofluorescence images of Nucleoprotein (green) and Hoescht (blue) staining are processed
-to create object masks. The number of nuclei within each mask are then
-counted using nuclear segmentation of the Hoescht image. To create detectable objects,
-images are binarized (imbinarize) with a user-defined threshold, followed by the removal of
-small, noisy pixels (bwareaopen). The masks are then dilated and filled (imdilate and imfill)
-to smoothen them and ensure they do not contain holes. Next, masks are eroded to undo
-the dilation step (imerode).</p>
+<p>Object masks are generated from immunofluorescence images depicting HMGB1 (in green) and Hoescht staining (in blue).
+The Hoescht image undergoes nuclear segmentation to quantify the number of nuclei within each mask.
+To enhance detectability, images are binarized using a user-defined threshold (imbinarize), followed by the removal of small, noisy pixels (bwareaopen).
+The masks are then subjected to dilation and filling operations (imdilate and imfill) to achieve a smoother appearance without any holes.
+Then, the masks undergo an erosion step (imerode) to reverse the previous dilation process.</p>
 <figure class="align-default">
 <img alt="_images/workflow.png" src="_images/workflow.png" />
 </figure>
-<p>To count the number of cells in viral cluster, object masks
+<p>To count the number of cells in a cluster, object masks
 were overlaid with the nuclear segmentation resulting from Hoechst-based segmentation.
 Incorrect masks were filtered out by thresholding the min/max mask area and removing
 masks that did not contain any nuclei. Finally, each mask are counted and characterized to
-obtain pixel intensities (viral protein expression) and object areas.</p>
+obtain pixel intensities (protein expression) and object areas.</p>
 <figure class="align-default" id="id3">
 <img alt="_images/Final_segmented_islands.png" src="_images/Final_segmented_islands.png" />
 <figcaption>
-<p><span class="caption-text">YFP channel image: counts overlayed onto each plaque</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-text">YFP channel image: counts overlayed onto each cluster</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>If we zoom into the image, we can visualize the mask created by the object segmentation.</p>
 <figure class="align-default" id="id4">
 <img alt="_images/Final_segmented_islands_zoom.png" src="_images/Final_segmented_islands_zoom.png" />
 <figcaption>
-<p><span class="caption-text">YFP channel image: Plaque (green) and mask overlay (red)</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+<p><span class="caption-text">YFP channel image: Cluster (green) and mask overlay (red)</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -166,20 +163,15 @@ obtain pixel intensities (viral protein expression) and object areas.</p>
 </tr>
 </tbody>
 </table>
-<p>Then the plaque masks are overlayed onto the segmented nuclear masks, and the number of cells in mask is counted.</p>
+<p>Then the cluster masks are overlayed onto the segmented nuclear masks, and the number of cells in mask is counted.</p>
 <figure class="align-default" id="id7">
 <img alt="_images/Final_segmented_islandmasks_with_nucoverlay_zoom.png" src="_images/Final_segmented_islandmasks_with_nucoverlay_zoom.png" />
 <figcaption>
-<p><span class="caption-text">Nuclear masks (red) ovelayed onto plaque masks (green). Number of cells within each mask are indicated.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Nuclear masks (red) ovelayed onto cluster masks (green). Number of cells within each mask are indicated.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<p>This script allows us to count and properly quantify the viral palques in each image!
+<p>This script allows us to count and properly quantify the clusters in each image!
 It will output the number of clusters, location area and intensity of each cluster, and the number of cells in each cluster in a table format.</p>
-</section>
-<section id="acknowledgements">
-<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this heading"></a></h2>
-<p>This experimental and computational pipeline was developed in collaboration with the Diaz-Munoz lab.
-Specifically, Illechukwu Agu devloped the experimental Plaque assay with viral protein staining, and also captured the images.</p>
 </section>
 </section>
 
