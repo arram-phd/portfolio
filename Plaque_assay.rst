@@ -5,15 +5,16 @@ Automated Cell Cluster Detection
 
 .. figure:: images/Plaque_assay/well5_merge.PNG
 
-    Mammary epithelial cells (blue) stained with an antibody recognizing HMGB1 (green). 9 x 9 stiched image of 20X images captured on a Nikon Ti-2 eclipse fluorescence microscope by Ilechukwu Agu
+    Mammary epithelial cells stained with Hoechst (blue) and an antibody recognizing HMGB1 (green). 9 x 9 stitched image of 20X images captured on a Nikon Ti-2 eclipse fluorescence microscope by Ilechukwu Agu
 
 
-During paracine signaling, cells send receive ligands that trigger gene expression responses. 
+During paracrine signaling, cells send and receive ligands that trigger gene expression responses. 
 As a result, cells express proteins in groups or "clusters" where nearby cells express a certain protein, while others do not. 
 
-Quantification of these clusters tranditionally require manual identification and drawing of the outlines for each cluster. This is a time intensitve method and requires painstaking effort by the researhcer.
+Quantification of these clusters traditionally require manual identification and drawing of the outlines for each cluster. 
+This is a time intensive method and requires painstaking effort by the researcher.
 
-This script automatically counts the number of clusters in an image and quantifies characteriss of each cluster using image processing techqniques described below.
+This script automatically counts the number of clusters in an image and quantifies characteristics of each cluster using image processing techqniques described below.
 This includes the number of cells in each cluster, area and location of each cluster. 
 Furthermore, it quantifies the intensity of protein expression in each cluster. 
 
@@ -41,8 +42,8 @@ Workflow
 
 
 
-Object masks are generated from immunofluorescence images depicting HMGB1 (in green) and Hoescht staining (in blue). 
-The Hoescht image undergoes nuclear segmentation to quantify the number of nuclei within each mask. 
+Object masks are generated from immunofluorescence images depicting HMGB1 (in green) and hoechst  staining (in blue). 
+The hoechst  image undergoes nuclear segmentation to quantify the number of nuclei within each mask. 
 To enhance detectability, images are binarized using a user-defined threshold (imbinarize), followed by the removal of small, noisy pixels (bwareaopen). 
 The masks are then subjected to dilation and filling operations (imdilate and imfill) to achieve a smoother appearance without any holes. 
 Then, the masks undergo an erosion step (imerode) to reverse the previous dilation process.
@@ -69,7 +70,7 @@ If we zoom into the image, we can visualize the mask created by the object segme
 Nuclear segmentation
 ----------------------
 
-To count the number of cells in each plaque, nuclear segmentaion is conducted in the blue channel image (Hoescht stain).
+To count the number of cells in each plaque, nuclear segmentation is conducted in the blue channel image (hoechst  stain).
 
 .. list-table:: 
 
@@ -86,7 +87,7 @@ Then the cluster masks are overlayed onto the segmented nuclear masks, and the n
 
 .. figure:: images/Plaque_assay/Final_segmented_islandmasks_with_nucoverlay_zoom.png
 
-    Nuclear masks (red) ovelayed onto cluster masks (green). Number of cells within each mask are indicated. 
+    Nuclear masks (red) overlayed onto cluster masks (green). Number of cells within each mask are indicated. 
 
 
 
