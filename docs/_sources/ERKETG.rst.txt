@@ -3,6 +3,15 @@
 Deciphering the History of ERK Activity from Fixed-Cell Immunofluorescence Measurements
 =========================================================================================
 
+
+.. video:: ./_static/Supplementary_movie_1.webm ./_static/images/Supplementary_movie_1.mp4
+    :loop:
+    :width: 500
+
+*Live-cell ERK biosensor microscopy followed by cyclic immunofluorescence measuremnts on the same cells.*
+
+
+
 Abstract
 --------
 The Ras/ERK pathway drives cell proliferation and other oncogenic behaviors, and quantifying its activity in situ is of high interest in cancer diagnosis and therapy. Pathway activation is often assayed by measuring phosphorylated ERK. However, this form of measurement overlooks dynamic aspects of signaling that can only be observed over time. In this study, we combine a live, single-cell ERK biosensor approach with multiplexed immunofluorescence staining of downstream target proteins to ask how well immunostaining captures the dynamic history of ERK activity. Combining linear regression, machine learning, and differential equation models, we develop an interpretive framework for immunostains, in which Fra-1 and pRb levels imply long term activation of ERK signaling, while Egr-1 and c-Myc indicate recent activation. We show that this framework can distinguish different classes of ERK dynamics within a heterogeneous population, providing a tool for annotating ERK dynamics within fixed tissues.
