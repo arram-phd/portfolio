@@ -257,5 +257,5 @@ Thank you to Marion Hardy, a talented bioninformatician, for teaching me these t
 
 Code Availability
 ------------------
-https://github.com/abzzram/MCF10A-Bulk-RNA-Sequencing
+https://github.com/arram-phd/MCF10A-Bulk-RNA-Sequencing
 

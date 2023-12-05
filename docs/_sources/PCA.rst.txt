@@ -75,4 +75,4 @@ For example, we see that each cell type have somewhat unique responses profiles 
 
 Code Availability
 
-https://github.com/abzzram/Principle-Component-Analysis
+https://github.com/arram-phd/Principle-Component-Analysis
