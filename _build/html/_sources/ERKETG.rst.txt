@@ -8,7 +8,7 @@ Deciphering the History of ERK Activity from Fixed-Cell Immunofluorescence Measu
     :loop:
     :width: 500
 
-*Live-cell ERK biosensor microscopy followed by cyclic immunofluorescence measuremnts on the same cells.*
+*Live-cell ERK biosensor microscopy followed by cyclic immunofluorescence measurements on the same cells.*
 
 
 
