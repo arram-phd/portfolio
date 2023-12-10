@@ -33,6 +33,7 @@ release = '0.0.1'
 extensions = [
     #[...]
     "sphinxcontrib.video",
+    'sphinxcontrib.pdfembed',
 ]
 
 video_enforce_extra_source = True
