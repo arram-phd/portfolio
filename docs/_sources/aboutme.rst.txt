@@ -9,7 +9,7 @@ My background includes a comprehensive skill in both wet and dry lab techniques,
 
 Professional 
 -------------
-I am currently a postdoctoral scholar at in the Albeck Lab at the University of California, Davis. I am wrapping up my PhD research involving the regulation of gene expression by cell signaling pathways. My research specifically investigated  the role of ERK signaling in modulating protein expression at the single-cell level.
+I am currently a postdoctoral scholar in the Albeck Lab at the University of California, Davis. I am wrapping up my PhD research involving the regulation of gene expression by cell signaling pathways. My research specifically investigated  the role of ERK signaling in modulating protein expression at the single-cell level.
 
 My methodology involved engineering cells to express a FRET-based biosensor for ERK, conducting live-cell imaging using a fluorescence microscope, and performing multiplexed immunofluorescence to capture the activation patterns of various proteins influenced by ERK signaling. 
 This comprehensive approach resulted in the generation of a multi-dimensional dataset, encompassing kinase activity and the resulting protein expression profiles in over 100,000 individual cells.
