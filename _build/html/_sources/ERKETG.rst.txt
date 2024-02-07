@@ -93,6 +93,45 @@ Finally, to simulate a potential use case with fixed tissue samples, we then use
 
         Inferring ERK signaling histories
 
+
+Systems biology and ODE modeling
+-------------------------------------------------------------------------------------------------------------
+.. figure:: images/P9.png
+
+       ODE model to simulate expression of 1000 genes
+
+To investigate the theoretical limits of predicting ERK dynamics from ETG levels, we extended an ordinary differential equation (ODE) model representing the regulation of ETGs (a). 
+For a given ERK activity time series, the model simulates the mRNA and protein levels of a hypothetical ERK-responsive gene (sim-ETG). (b)
+We constructed 1,000 hypothetical sim-ETGs by randomly assigning each one with different parameters values for mRNA degradation rate, protein degradation rate, phosphorylated protein degradation rate, protein dephosphorylation rate, negative feedback half-max concentration, and fractional expression at baseline (Fig. 6c, Supplementary Table 2). 
+These 1,000 gene parameter configurations survey the parameter space with the goal of identifying sim-ETGs that capture different aspects of ERK signaling. 
+Using 10,000 randomly selected live-cell ERK activity measurements from our experimental data, we simulated responses of all 1,000 sim-ETGs for each cell 
+
+.. figure:: images/P10.png
+
+
+Using the end point sim-ETG protein values (representing a fixed-cell 4i measurement of the hypothetical protein), we applied single variable regression modeling to characterize each sim-ETG’s capacity to predict ERK dynamics features. 
+For predicting average ERK activity throughout the experiment, we found that 49% of sim-ETGs exhibited a R2 above 0.5 and over 100 were excellent predictors (R2 > 0.8) (d). 
+For predicting the maximum activation and average pulse height, only 12% of sim-ETGs exhibited a R2 above 0.5, with a maximum R2 around 0.6. 
+
+Models for predicting dynamic ERK features like the frequency or the average derivative were overall worse than integrative features like the mean or sum of duration, reflecting that sim-ETGs under this model are variations on an integrator of ERK activity.. 
+To visualize the gene expression response, we plotted a single cell’s ERK signal along with the response of the top five predictors of the mean (f). 
+These response profiles show that both genes activated by or inhibited by ERK can serve as reliable predictors of ERK activity. 
+While our experimental ETG measurements were selected based on known positive responders to ERK, 20% of sim-ETGs were negatively regulated by ERK; experimental prediction of ERK activity would likely be improved by including genes that are inhibited by ERK (Yamamoto et al., 2006). 
+
+We then analyzed which gene parameters most influence how well an individual sim-ETG predicts mean ERK activity by examining the weights from a MLR model of sim-ETGs. 
+Consistent with the known behavior of Fra-1, slow mRNA and phosphorylated protein degradation rates allow for accurate recording of the average ERK history. 
+Our 4i data analysis determined that while Fra-1 predicts long-term history, Egr-1 and c-Myc predict recent history. To examine this distinction in sim-ETGs, we calculated the correlation between the ERK activity at each timepoint and end-point protein expression. 
+As expected, genes that predict mean ERK activity tend to be correlated with ERK activity over a wide time span, similarly to Fra-1. Those that are less effective at predicting mean are correlated with recent activation, behaving more like Egr-1 or c-Myc.. 
+Notably, no sim-ETG under this model was specifically predictive of intermediate timescales of activation (i.e. 5-10 hours prior to fixation). 
+
+Finally, to investigate how many gene measurements are required to accurately predict the different aspects of ERK signaling, we created MLR models which used many sim-ETGs at once to predict multiple ERK pulse features. These models greatly improved our predictions, as most explained 75 to 99% of the variance in the dataset (g). 
+Of note, the derivative and frequency model predictions drastically improved as the number of predictors increased. This result was not obtained through overfitting, as the test set error of the models also decreased with more sim-ETGs. 
+For most ERK features, between 16 to 20 sim-ETGs are required for obtaining good models (R2 ~ 0.7) (g inset). 
+From an experimental standpoint, these results demonstrate that predicting dynamic features of ERK is highly feasible, and depends largely on which gene products are measured.
+From a practical standpoint, measuring for 20 proteins using a multiplex staining protocol is readily achievable. 
+In all, the ODE model indicates that our ERK activation inference method is a feasible solution for fixed tissue analysis, and will benefit from further exploration of potential endogenous gene products to measure.
+
+
 Discussion
 -----------
 Here, we provide proof of principle that end-point ETG staining can be used to infer key aspects of long-term ERK activity within fixed cell samples. While differences in ETG activation by ERK were previously known, our analysis formalizes these differences and shows how quantitative models can be used to infer ERK’s activity history with single-cell resolution. The ETG measurements in these experiments provide information about two broad types of ERK behavior, long-term and short-term activation. Additionally, our model analysis of simulated ETGs demonstrates that additional measurements could even more finely resolve signaling patterns, such as intermittent pulses. 
