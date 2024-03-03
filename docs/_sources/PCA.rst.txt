@@ -14,7 +14,7 @@ PCA, or Principal Component Analysis, is a dimensionality reduction technique wi
 The primary goal is to transform high-dimensional data into a new coordinate system (i.e., a new set of variables), called principal components, where the data's variance is maximized along the principal axes. 
 This transformation allows for a more efficient representation of the data while retaining its essential features (dimensionality reduction).
 
-For more details on the math behind PCA, here's a greate video from stat quest: https://www.youtube.com/watch?v=FgakZw6K1QQ
+For more details on the math behind PCA, here's a great video from stat quest: https://www.youtube.com/watch?v=FgakZw6K1QQ
 
 The main function used in this tutorial is called PCApl (Princple Component Analysis Pipeline). It will conduct all the necessary steps for us and output three graphs for us to analysize.
 
